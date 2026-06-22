@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Sri Nandhini Tex</string>
+    <string name="title_activity_main">Sri Nandhini Tex</string>
+    <string name="package_name">com.srinandhinitex.app</string>
+    <string name="custom_url_scheme">com.srinandhinitex.app</string>
+</resources>

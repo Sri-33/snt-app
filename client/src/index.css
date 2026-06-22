@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-white font-sans antialiased;
+    color: #111111;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  h1, h2, h3, h4 {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: #111111;
+  }
+}
+
+@layer components {
+  .input {
+    @apply w-full px-3 py-2 bg-white rounded-md text-sm focus:outline-none;
+    color: #111111;
+    border: 1px solid #E8E0CC;
+    transition: border-color 0.15s ease;
+  }
+  .input:focus {
+    border: 1.5px solid #9A7F2E;
+  }
+
+  .card {
+    background-color: #F9F7F0;
+    border: 1px solid #E8E0CC;
+    @apply rounded-md;
+  }
+
+  .section-label {
+    @apply uppercase font-semibold;
+    color: #9A7F2E;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .page-title {
+    @apply font-semibold text-xl pl-3;
+    color: #111111;
+    border-left: 3px solid #9A7F2E;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary {
+    @apply text-white rounded-md font-medium border border-transparent transition-colors;
+    background-color: #111111;
+  }
+  .btn-primary:hover {
+    border-color: #9A7F2E;
+  }
+
+  .badge-pill {
+    @apply inline-block rounded-full text-xs font-semibold px-2 py-0.5;
+  }
+}
+
+@layer utilities {
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Thin gold scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #9A7F2E transparent;
+}
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #9A7F2E;
+  border-radius: 9999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
