@@ -12,6 +12,8 @@ module.exports = {
         NODE_ENV: 'production',
         PORT: 3001,
         SNT_DB_PATH: '/var/data/snt.db',
+        SERVER_VERSION: '1.1.0',
+        DOTENV_CONFIG_PATH: '/var/www/snt-app/server/.env',
         N8N_TRACKING_WEBHOOK: 'https://snt-sales.app.n8n.cloud/webhook/tracking-update',
         N8N_EMAIL_WEBHOOK: 'https://snt-sales.app.n8n.cloud/webhook/email-report',
       },

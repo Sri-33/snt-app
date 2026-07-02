@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { api } from '../lib/api';
 import { formatCurrency, formatDate } from '../lib/format';
 import { useToast } from '../context/ToastContext';
+import PageHeader from '../components/PageHeader';
 
 export default function RetailBills() {
   const [bills, setBills] = useState([]);
@@ -45,12 +46,9 @@ export default function RetailBills() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="page-title">Retail Bills</h2>
-        <span className="text-xs text-muted">{bills.length} entries</span>
-      </div>
+      <PageHeader title="Retail Bills" subtitle={`GST bills & summaries · ${bills.length} entries`} accent="rose" />
 
-      <div className="flex gap-1 bg-sand border border-line rounded-md p-1">
+      <div className="flex gap-1 bg-rose-50 border border-rose-200 rounded-lg p-1">
         {[
           { id: 'items', label: 'All Items' },
           { id: 'summary', label: 'Daily Summary' },
@@ -59,8 +57,10 @@ export default function RetailBills() {
             key={tab.id}
             type="button"
             onClick={() => setActiveTab(tab.id)}
-            className={`flex-1 py-2 rounded-md text-sm font-medium transition-colors ${
-              activeTab === tab.id ? 'bg-ink text-white' : 'text-ink hover:text-gold'
+            className={`flex-1 py-2 rounded-md text-sm font-semibold transition-all ${
+              activeTab === tab.id
+                ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-sm'
+                : 'text-rose-800 hover:bg-white/70'
             }`}
           >
             {tab.label}

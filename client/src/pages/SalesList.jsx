@@ -6,6 +6,7 @@ import { useToast } from '../context/ToastContext';
 import { useAuth } from '../context/AuthContext';
 import { SALES_COURIERS } from '../constants';
 import { saveBase64File, blobToBase64, openHtmlString } from '../lib/print';
+import PageHeader from '../components/PageHeader';
 
 function saleDate(s) {
   return formatDate((s.created_at || '').split(' ')[0]);
@@ -139,7 +140,7 @@ export default function SalesList() {
 
   return (
     <div className="space-y-4">
-      <h2 className="page-title">Sales List</h2>
+      <PageHeader title="Sales List" subtitle="Search, export & dispatch sheets" accent="emerald" />
 
       <div className="card p-3 space-y-2">
         <input
@@ -165,9 +166,9 @@ export default function SalesList() {
       </div>
 
       <div className="grid grid-cols-4 gap-2">
-        <button onClick={exportExcel} className="py-2 bg-success text-white rounded-md text-xs font-medium">Excel</button>
-        <button onClick={exportPDF} className="py-2 bg-warning text-white rounded-md text-xs font-medium">PDF</button>
-        <button onClick={exportImage} className="py-2 bg-[#555555] text-white rounded-md text-xs font-medium">Image</button>
+        <button onClick={exportExcel} className="py-2 btn-success text-xs">Excel</button>
+        <button onClick={exportPDF} className="py-2 btn-warning text-xs">PDF</button>
+        <button onClick={exportImage} className="py-2 btn-primary text-xs">Image</button>
         <button onClick={sendMail} className="py-2 btn-primary text-xs">Mail</button>
       </div>
 
@@ -181,8 +182,8 @@ export default function SalesList() {
           </select>
         </div>
         <div className="grid grid-cols-3 gap-2">
-          <button onClick={() => downloadDispatch('excel')} className="py-2 bg-success text-white rounded-md text-xs font-medium">Excel</button>
-          <button onClick={() => downloadDispatch('pdf')} className="py-2 bg-warning text-white rounded-md text-xs font-medium">PDF</button>
+          <button onClick={() => downloadDispatch('excel')} className="py-2 btn-success text-xs">Excel</button>
+          <button onClick={() => downloadDispatch('pdf')} className="py-2 btn-warning text-xs">PDF</button>
           <button onClick={() => downloadDispatch('word')} className="py-2 btn-primary text-xs">Word</button>
         </div>
       </div>

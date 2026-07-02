@@ -4,24 +4,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: '#111111', soft: '#1f1f1f' },
-        gold: { DEFAULT: '#9A7F2E', light: '#b89a4a', dark: '#7d6624' },
-        sand: '#F9F7F0',
-        line: '#E8E0CC',
-        muted: '#555555',
-        subtle: '#888888',
-        // Legacy alias: primary brand is now near-black.
+        ink: { DEFAULT: '#111111', soft: '#1A1A1A', muted: '#2D2D2D' },
+        gold: { DEFAULT: '#9A7F2E', light: '#B89A4A', dark: '#7D6624', pale: '#C4A84D' },
+        sand: '#FAFAFA',
+        surface: '#FAFAFA',
+        line: '#E0E0E0',
+        muted: '#5C5C5C',
+        subtle: '#8A8A8A',
+        faint: '#A3A3A3',
+        dim: '#D4D4D4',
         maroon: { DEFAULT: '#111111', dark: '#000000', light: '#9A7F2E' },
         success: '#2E7D32',
         warning: '#E65100',
       },
       fontFamily: {
         sans: [
-          'Inter',
-          'Roboto',
+          'Plus Jakarta Sans',
           'system-ui',
           '-apple-system',
           'Segoe UI',
+          'sans-serif',
+        ],
+        display: [
+          'Lemon Milk',
+          'Plus Jakarta Sans',
+          'system-ui',
           'sans-serif',
         ],
       },
@@ -45,6 +52,7 @@ export default {
         xl: 'none',
         '2xl': 'none',
         inner: 'none',
+        card: '0 1px 3px rgba(17, 17, 17, 0.06)',
       },
     },
   },

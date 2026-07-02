@@ -7,6 +7,7 @@ import { api } from '../lib/api';
 import { formatDate, formatDateISO, formatCurrency } from '../lib/format';
 import { useToast } from '../context/ToastContext';
 import { useAuth } from '../context/AuthContext';
+import PageHeader from '../components/PageHeader';
 
 const COLORS = ['#111111', '#9A7F2E', '#555555', '#b89a4a', '#888888', '#7d6624', '#cdbf8f', '#3a3a3a'];
 
@@ -49,7 +50,7 @@ export default function SalesAnalytics() {
 
   return (
     <div className="space-y-4">
-      <h2 className="page-title">Sales Analytics</h2>
+      <PageHeader title="Sales Analytics" subtitle="Charts & performance" accent="emerald" />
 
       <div className="grid grid-cols-2 gap-2">
         <input type="date" value={dateFrom} onChange={(e) => setDateFrom(e.target.value)} className="input text-sm" />

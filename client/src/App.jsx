@@ -15,6 +15,7 @@ import SalesEntry from './pages/SalesEntry';
 import SalesList from './pages/SalesList';
 import SalesAnalytics from './pages/SalesAnalytics';
 import RetailBills from './pages/RetailBills';
+import AITools from './pages/AITools';
 import { useEffect } from 'react';
 import { flushQueue } from './lib/offlineQueue';
 import { api } from './lib/api';
@@ -106,6 +107,7 @@ export default function App() {
               </Route>
               <Route path="settings" element={<Settings />} />
               <Route path="retail-bills" element={<RetailBills />} />
+              <Route path="ai-tools" element={<AITools />} />
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

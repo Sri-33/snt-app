@@ -10,6 +10,7 @@ import { api } from '../lib/api';
 import { formatDate, formatDateISO, formatCurrency } from '../lib/format';
 import { useToast } from '../context/ToastContext';
 import { useAuth } from '../context/AuthContext';
+import PageHeader from '../components/PageHeader';
 import PrintButton from '../components/PrintButton';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, ArcElement, Title, Tooltip, Legend);
@@ -163,7 +164,7 @@ export default function Analytics() {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between no-print">
-        <h2 className="page-title">Analytics</h2>
+        <PageHeader title="Analytics" subtitle="Reports, charts & exports" accent="orange" />
         <PrintButton contentRef={reportRef} label="Print" />
       </div>
 
@@ -238,10 +239,10 @@ export default function Analytics() {
           </div>
 
           <div className="flex gap-2 no-print">
-            <button onClick={handleExportExcel} className="flex-1 py-2 bg-success text-white rounded-md text-sm font-medium">
+            <button onClick={handleExportExcel} className="flex-1 py-2 btn-success text-sm">
               Excel
             </button>
-            <button onClick={handleExportPDF} className="flex-1 py-2 bg-warning text-white rounded-md text-sm font-medium">
+            <button onClick={handleExportPDF} className="flex-1 py-2 btn-warning text-sm">
               PDF
             </button>
             <button onClick={() => setShowEmailModal(true)} className="flex-1 py-2 btn-primary text-sm">
@@ -254,7 +255,7 @@ export default function Analytics() {
       {showEmailModal && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 no-print">
           <div className="bg-white border border-line rounded-md p-6 w-full max-w-sm">
-            <h3 className="page-title text-lg mb-3">Send Report via Email</h3>
+            <h3 className="font-display text-lg text-ink mb-3 px-3 border-l-[3px] border-orange-400">Send Report via Email</h3>
             <p className="text-sm text-muted mb-4">Report will be sent through n8n workflow.</p>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
               placeholder="recipient@email.com" className="input mb-4" />

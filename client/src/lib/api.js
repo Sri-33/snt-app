@@ -18,7 +18,10 @@ async function request(path, options = {}) {
   const data = await res.json().catch(() => ({}));
 
   if (!res.ok) {
-    const err = new Error(data.error || `Request failed (${res.status})`);
+    const msg = res.status === 413
+      ? 'Upload too large — use fewer/smaller photos or ask admin to raise server limit'
+      : (data.error || `Request failed (${res.status})`);
+    const err = new Error(msg);
     err.status = res.status;
     err.data = data;
     throw err;
@@ -98,4 +101,30 @@ export const api = {
     return request(`/retail-bills${qs ? `?${qs}` : ''}`);
   },
   getRetailBillsSummary: () => request('/retail-bills/summary'),
+
+  generateListing: async (formData) => {
+    const session = localStorage.getItem('snt_session');
+    const role = session ? JSON.parse(session).role : null;
+    const res = await fetch(`${API_BASE}/ai/listing`, {
+      method: 'POST',
+      headers: role ? { 'X-User-Role': role } : {},
+      body: formData,
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const msg = res.status === 413
+        ? 'Photos too large — try fewer images or smaller file sizes'
+        : (data.error || `Request failed (${res.status})`);
+      throw new Error(msg);
+    }
+    return data;
+  },
+  generateCaption: (data) =>
+    request('/ai/caption', { method: 'POST', body: JSON.stringify(data) }),
+  generateCopy: (input) =>
+    request('/ai/copy', { method: 'POST', body: JSON.stringify({ input }) }),
+  generateAutoDm: (data) =>
+    request('/ai/autodm', { method: 'POST', body: JSON.stringify(data) }),
+  generateYoutube: (data) =>
+    request('/ai/youtube', { method: 'POST', body: JSON.stringify(data) }),
 };

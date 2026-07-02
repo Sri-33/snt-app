@@ -3,6 +3,7 @@ import { api } from '../lib/api';
 import { formatDateISO } from '../lib/format';
 import AddressLabel from '../components/AddressLabel';
 import DualLabel from '../components/DualLabel';
+import PageHeader from '../components/PageHeader';
 import PrintButton from '../components/PrintButton';
 
 function PaymentBadge({ entry }) {
@@ -56,7 +57,7 @@ export default function PrintPage() {
 
   return (
     <div className="space-y-4">
-      <h2 className="page-title">Print Labels</h2>
+      <PageHeader title="Print Labels" subtitle="Select date & print slips" accent="violet" />
 
       <div>
         <label className="block text-sm font-medium mb-1 text-ink">Select Date</label>

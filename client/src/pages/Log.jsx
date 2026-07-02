@@ -3,6 +3,7 @@ import { api } from '../lib/api';
 import { formatDate, formatDateISO, formatCurrency } from '../lib/format';
 import { useToast } from '../context/ToastContext';
 import { COURIERS, INDIAN_STATES } from '../constants';
+import PageHeader from '../components/PageHeader';
 import AddressLabel from '../components/AddressLabel';
 import DualLabel from '../components/DualLabel';
 import PrintButton from '../components/PrintButton';
@@ -116,7 +117,7 @@ export default function Log() {
     return (
       <div className="space-y-4">
         <button onClick={() => setDetail(null)} className="text-gold text-sm font-medium">← Back to Log</button>
-        <h2 className="page-title">Entry Detail</h2>
+        <PageHeader title="Entry Detail" accent="blue" />
 
         <div className="card p-4 space-y-2 text-sm">
           <Row label="Date" value={formatDate(detail.date)} />
@@ -142,7 +143,7 @@ export default function Log() {
         </button>
 
         {webhookFailed && (
-          <button onClick={retryWebhook} className="w-full py-2 bg-warning text-white rounded-md text-sm font-medium">
+          <button onClick={retryWebhook} className="w-full py-2 btn-warning text-sm">
             Retry WhatsApp Webhook
           </button>
         )}
@@ -159,7 +160,7 @@ export default function Log() {
 
   return (
     <div className="space-y-4">
-      <h2 className="page-title">Daily Log</h2>
+      <PageHeader title="Daily Log" subtitle="View & manage today's entries" accent="blue" />
 
       <div className="card p-3 space-y-2">
         <div className="grid grid-cols-2 gap-2">
@@ -201,7 +202,7 @@ export default function Log() {
         <p className="text-subtle text-center py-8">No entries found</p>
       ) : (
         <div className="rounded-md border border-line overflow-hidden">
-          <div className="flex items-center px-3 py-2 bg-ink text-xs font-semibold text-white uppercase tracking-wide">
+          <div className="flex items-center px-3 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-xs font-bold text-white uppercase tracking-wide">
             <input type="checkbox" checked={selected.size === entries.length && entries.length > 0}
               onChange={toggleAll} className="mr-2 accent-gold" />
             <span className="flex-1">Name / City</span>

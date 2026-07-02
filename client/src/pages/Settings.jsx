@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { api } from '../lib/api';
 import { useToast } from '../context/ToastContext';
 import { useUpdate } from '../context/UpdateContext';
+import PageHeader, { CardHead } from '../components/PageHeader';
 
 export default function Settings() {
   const [addresses, setAddresses] = useState([]);
@@ -41,10 +42,11 @@ export default function Settings() {
 
   return (
     <div className="space-y-4">
-      <h2 className="page-title">Settings</h2>
+      <PageHeader title="Settings" subtitle="Addresses & app updates" accent="cyan" />
 
-      <div className="card p-4">
-        <h3 className="section-label mb-3">Saved Addresses</h3>
+      <div className="card overflow-hidden">
+        <CardHead title="Saved Addresses" accent="cyan" />
+        <div className="p-4">
         {loading ? (
           <p className="text-subtle text-sm">Loading...</p>
         ) : addresses.length === 0 ? (
@@ -65,17 +67,19 @@ export default function Settings() {
             ))}
           </div>
         )}
+        </div>
       </div>
 
-      <div className="card p-4">
-        <h3 className="section-label mb-3">App Version</h3>
-        <p className="text-[12px] text-[#888888]">Current: v{current}</p>
+      <div className="card overflow-hidden">
+        <CardHead title="App Version" accent="cyan" />
+        <div className="p-4">
+        <p className="text-[12px] text-subtle">Current: v{current}</p>
 
         <button
           type="button"
           onClick={handleCheck}
           disabled={checking}
-          className={`mt-3 w-full py-2.5 rounded-md text-sm font-medium bg-[#111111] text-white transition-opacity ${checking ? 'opacity-60' : 'hover:opacity-90'}`}
+          className={`mt-3 w-full py-2.5 btn-primary text-sm ${checking ? 'opacity-60' : ''}`}
         >
           {checking ? 'Checking...' : 'Check for Updates'}
         </button>
@@ -83,24 +87,25 @@ export default function Settings() {
         {checkedOnce && !checking && (
           updateAvailable ? (
             <div className="mt-3">
-              <p className="text-sm font-medium text-[#9A7F2E]">
-                ⚡ Update available! Tap to refresh and get the latest version.
+              <p className="text-sm font-medium text-gold">
+                Update available! Tap to refresh and get the latest version.
               </p>
               <button
                 type="button"
                 onClick={refreshNow}
-                className="mt-2 w-full py-2.5 rounded-md text-sm font-semibold bg-[#9A7F2E] text-white hover:opacity-90 transition-opacity"
+                className="mt-2 w-full py-2.5 rounded-lg text-sm font-semibold bg-gradient-to-r from-gold to-amber-500 text-white shadow-md hover:brightness-105"
               >
                 Refresh Now
               </button>
             </div>
           ) : (
-            <p className="mt-3 text-sm font-medium text-[#2E7D32]">✓ You are on the latest version</p>
+            <p className="mt-3 text-sm font-medium text-success">You are on the latest version</p>
           )
         )}
+        </div>
       </div>
 
-      <div className="card p-4 text-sm text-muted">
+      <div className="card p-4 text-sm text-muted bg-gradient-to-br from-cyan-50/50 to-white">
         <p><strong className="text-ink">App:</strong> SNT Courier Manager v{current}</p>
         <p className="mt-1"><strong className="text-ink">Company:</strong> Sri Nandhini Tex</p>
       </div>

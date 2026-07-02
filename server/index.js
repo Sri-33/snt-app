@@ -1,3 +1,4 @@
+import './loadEnv.js';
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
@@ -9,6 +10,7 @@ import analyticsRouter from './routes/analytics.js';
 import webhookRouter from './routes/webhook.js';
 import salesRouter from './routes/sales.js';
 import retailBillsRouter from './routes/retailBills.js';
+import aiToolsRouter from './routes/aiTools.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -32,6 +34,7 @@ app.use('/api/analytics', analyticsRouter);
 app.use('/api/webhook', webhookRouter);
 app.use('/api/sales', salesRouter);
 app.use('/api/retail-bills', retailBillsRouter);
+app.use('/api/ai', aiToolsRouter);
 
 const clientDist = path.join(__dirname, '..', 'client', 'dist');
 app.use(express.static(clientDist));

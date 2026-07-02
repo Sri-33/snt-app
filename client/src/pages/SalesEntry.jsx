@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { api } from '../lib/api';
 import { useToast } from '../context/ToastContext';
 import { SALES_COURIERS } from '../constants';
+import PageHeader from '../components/PageHeader';
 
 const emptyForm = () => ({
   customer_name: '',
@@ -66,16 +67,12 @@ export default function SalesEntry() {
       ['customer_name', 'Customer Name'],
       ['place', 'Place / Destination'],
       ['saree_name', 'Saree Name'],
-      ['weight', 'Weight'],
       ['worth', 'Amount'],
       ['phone', 'Phone Number'],
       ['courier', 'Courier'],
-      ['tracking_number', 'Courier Tracking Number'],
     ];
     if (isCod) {
       required.push(['cod_amount', 'COD Amount']);
-    } else {
-      required.push(['payment_ref', 'Payment UTR Number']);
     }
 
     const missing = required.find(([key]) => !String(form[key]).trim());
@@ -112,7 +109,7 @@ export default function SalesEntry() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h2 className="page-title">Sales Entry</h2>
+      <PageHeader title="Sales Entry" subtitle="Record saree sale & dispatch" accent="emerald" />
 
       <div>
         <label className="block text-sm font-medium mb-1 text-ink">Customer Name *</label>
@@ -165,7 +162,9 @@ export default function SalesEntry() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1 text-ink">Weight (kg) *</label>
+        <label className="block text-sm font-medium mb-1 text-ink">
+          Weight (kg) <span className="text-subtle font-normal">(optional)</span>
+        </label>
         <input
           type="number"
           inputMode="decimal"
@@ -249,7 +248,7 @@ export default function SalesEntry() {
 
       <div>
         <label className="block text-sm font-medium mb-1 text-ink">
-          Payment UTR Number {isCod ? <span className="text-subtle font-normal">(optional)</span> : '*'}
+          Payment UTR Number <span className="text-subtle font-normal">(optional)</span>
         </label>
         <input
           type="text"
@@ -279,7 +278,9 @@ export default function SalesEntry() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium mb-1 text-ink">Courier Tracking Number *</label>
+        <label className="block text-sm font-medium mb-1 text-ink">
+          Courier Tracking Number <span className="text-subtle font-normal">(optional)</span>
+        </label>
         <input
           type="text"
           value={form.tracking_number}
